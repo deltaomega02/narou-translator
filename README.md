@@ -1,5 +1,7 @@
 # narou-translator — 일본 웹소설 번역 Chrome 확장
 
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) ![Chrome Extension](https://img.shields.io/badge/Chrome_Extension-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white) ![Google Gemini](https://img.shields.io/badge/Google_Gemini-8E75B2?style=for-the-badge&logo=googlegemini&logoColor=white)
+
 일본 웹소설 사이트 '소설가가 되자(小説家になろう)'를 페이지 안에서 바로 한국어로 번역해 읽는 Chrome 확장 프로그램.
 기성 번역기의 가장 큰 문제 — **작품마다 고유명사 번역이 매번 달라지는 것** — 을 작품별 용어집(glossary)으로 해결했다.
 
