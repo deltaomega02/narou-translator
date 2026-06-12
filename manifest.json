@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Narou Translator",
+  "version": "1.0.0",
+  "description": "小説家になろう 일본 라노벨을 Gemini 3.1로 자연스럽게 한국어 번역",
+  "permissions": ["storage", "activeTab"],
+  "host_permissions": [
+    "https://ncode.syosetu.com/*",
+    "https://generativelanguage.googleapis.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://ncode.syosetu.com/*/"],
+      "js": ["glossary.js", "content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_page": "options.html",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

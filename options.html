@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Narou Translator - 용어집 관리</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0f0f1a;
+      color: #e2e8f0;
+      font-family: -apple-system, 'Malgun Gothic', sans-serif;
+      padding: 32px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 22px; margin-bottom: 8px; }
+    .subtitle { color: #9ca3af; font-size: 13px; margin-bottom: 24px; }
+    .novel-section {
+      background: #1a1a2e;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .novel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .novel-code {
+      font-weight: 700;
+      font-size: 15px;
+      color: #a5b4fc;
+    }
+    .entry-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .entry-row input {
+      padding: 6px 10px;
+      background: #2a2a3e;
+      border: 1px solid #374151;
+      border-radius: 6px;
+      color: #e2e8f0;
+      font-size: 13px;
+    }
+    .entry-jp { width: 200px; }
+    .entry-kr { flex: 1; }
+    button {
+      padding: 6px 14px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .btn-delete { background: #7f1d1d; color: #fca5a5; }
+    .btn-delete:hover { background: #991b1b; }
+    .btn-add { background: #065f46; color: #d1fae5; }
+    .btn-add:hover { background: #047857; }
+    .btn-delete-novel { background: #374151; color: #9ca3af; font-size: 11px; }
+    .add-row { margin-top: 10px; }
+    .empty { color: #6b7280; text-align: center; padding: 40px; }
+    #status {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #065f46;
+      color: #d1fae5;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>용어집 관리</h1>
+  <p class="subtitle">소설별로 캐릭터 이름, 지명, 스킬명 등을 등록하면 번역 시 자동으로 적용됩니다.</p>
+  <div id="glossary-container"></div>
+  <div id="status"></div>
+  <script src="options.js"></script>
+</body>
+</html>
