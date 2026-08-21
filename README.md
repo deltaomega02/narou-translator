@@ -20,7 +20,7 @@
 [content.js]  소설 본문 페이지 감지 → 번역 UI 삽입 → 본문 추출
       ↓ 메시지 패싱
 [background.js (service worker)]
-      → 작품 ID로 용어집 로드 (glossary.js)
+      → 작품 ID로 용어집 로드 (background.js 의 자체 getGlossary)
       → 시스템 프롬프트 조립: 번역 규칙 + 용어집 ("이 작품에서 X는 반드시 Y로")
       → Gemini API 호출
       ↓
@@ -28,7 +28,9 @@
 ```
 
 - **용어집이 핵심**: 등장인물·지명·고유 기술명을 작품 단위로 저장해 두고 매 번역 요청의 프롬프트에 주입한다. 화(話)가 바뀌어도 번역이 일관된다. 새 고유명사는 읽다가 바로 등록.
-- **MV3 제약 대응**: 네트워크 호출은 service worker(background)로 모으고, content script는 DOM 조작만 담당 — 권한도 `storage` + 대상 사이트 host 권한으로 최소화.
+- **모델**: `gemini-3.1-flash-lite-preview`. 장문 번역을 반복 호출하므로 품질보다 단가·지연을 우선했다.
+- **용어집이 두 곳에서 읽힌다**: `glossary.js` 는 content script 전용이라 service worker 가 그대로 쓸 수 없어, `background.js:39` 에 같은 역할의 `getGlossary` 가 따로 있다. MV3 에서 SW 와 content script 가 번들을 공유하지 못해 생긴 중복이다.
+- **MV3 제약 대응**: 네트워크 호출은 service worker(background)로 모으고, content script는 DOM 조작만 담당 — 권한은 `storage` · `activeTab` 과 host 권한 둘(`ncode.syosetu.com`, Gemini API)로 제한.
 
 ## 프로젝트 구조
 
@@ -37,7 +39,7 @@ narou-translator/
 ├── manifest.json     # MV3 선언, 최소 권한
 ├── content.js        # 본문 감지·추출, 번역 UI 삽입/렌더링
 ├── background.js     # 프롬프트 조립 + Gemini 호출 (service worker)
-├── glossary.js       # 작품별 용어집 CRUD
+├── glossary.js       # 작품별 용어집 CRUD (content script 전용)
 ├── options.html/js   # API 키·번역 설정
 └── popup.html/js     # 툴바 팝업
 ```
